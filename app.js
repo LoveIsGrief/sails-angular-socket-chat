@@ -3,7 +3,7 @@
  *
  * Use `app.js` to run your app without `sails lift`.
  * To start the server, run: `node app.js`.
- * 
+ *
  * This is handy in situations where the sails CLI is not relevant or useful.
  *
  * For example:
@@ -12,7 +12,7 @@
  *   => `node debug app.js`
  *   => `modulus deploy`
  *   => `heroku scale`
- * 
+ *
  *
  * The same command-line arguments are supported, e.g.:
  * `node app.js --silent --port=80 --prod`
@@ -32,6 +32,8 @@ catch (e) {
 	console.error('but if it doesn\'t, the app will run with the global sails instead!');
 	return;
 }
+
+require("coffee-script")
 
 // Start server
 sails.lift();
