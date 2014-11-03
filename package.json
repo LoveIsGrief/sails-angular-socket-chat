@@ -1,9 +1,9 @@
 {
-  "name": "sailsAngularSeed",
+  "name": "Sails-angular-socket-chat",
   "private": true,
   "version": "0.0.0",
-  "description": "a Sails application",
-  "keywords": [],
+  "description": "A Sails web-application for chatting",
+  "keywords": [ "angularjs", "sailsjs"],
   "dependencies": {
     "coffee-script": "^1.8.0",
     "ejs": "~0.8.4",
@@ -24,10 +24,9 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "start": "node app.js",
-    "debug": "node debug app.js"
+    "start": "coffee app.coffee"
   },
-  "main": "app.js",
+  "main": "app.coffee",
   "repository": {
     "type": "git",
     "url": ""
