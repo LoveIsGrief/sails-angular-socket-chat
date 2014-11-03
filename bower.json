@@ -1,0 +1,26 @@
+{
+  "name": "sails-angular-socket-chat",
+  "version": "0.0.0",
+  "homepage": "https://github.com/LoveIsGrief/sails-angular-socket-chat",
+  "authors": [
+    "LoveIsGrief <LoveIsGrief@users.noreply.github.com>"
+  ],
+  "description": "A webchat application using sails and angularjs.",
+  "keywords": [
+    "angularjs",
+    "sailsjs",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.3.1"
+  }
+}
