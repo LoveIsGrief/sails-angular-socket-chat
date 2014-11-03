@@ -14,51 +14,51 @@ More information on using Grunt to work with static assets:
 http://gruntjs.com/configuring-tasks
 ###
 module.exports = (grunt) ->
-	
+
 	###*
 	CSS files to inject in order
 	(uses Grunt-style wildcard/glob/splat expressions)
-	
+
 	By default, Sails also supports LESS in development and production.
 	To use SASS/SCSS, Stylus, etc., edit the `sails-linker:devStyles` task
 	below for more options.  For this to work, you may need to install new
 	dependencies, e.g. `npm install grunt-contrib-sass`
 	###
 	cssFilesToInject = ["linker/**/*.css"]
-	
+
 	###*
 	Javascript files to inject in order
 	(uses Grunt-style wildcard/glob/splat expressions)
-	
+
 	To use client-side CoffeeScript, TypeScript, etc., edit the
 	`sails-linker:devJs` task below for more options.
 	###
 	jsFilesToInject = [
-		
+
 		# Below, as a demonstration, you'll see the built-in dependencies
 		# linked in the proper order order
-		
+
 		# Include the angular dependency.
-		"linker/lib/angular/angular.min.js"
-		
+		"linker/lib/angularjs/angular.min.js"
+
 		# NOTE: For all other angular dependencies, include the path
 		# 'linker/lib/angular/desiredAngularDependecy.js'
-		
+
 		# All of the rest of your app scripts imported here
 		"linker/js/**/*.js"
 	]
-	
+
 	###*
 	Client-side HTML templates are injected using the sources below
 	The ordering of these templates shouldn't matter.
 	(uses Grunt-style wildcard/glob/splat expressions)
-	
+
 	By default, Sails uses JST templates and precompiles them into
 	functions for you.  If you want to use jade, handlebars, dust, etc.,
 	edit the relevant sections below.
 	###
 	templateFilesToInject = ["linker/**/*.html"]
-	
+
 	#///////////////////////////////////////////////////////////////
 	#///////////////////////////////////////////////////////////////
 	#///////////////////////////////////////////////////////////////
@@ -84,12 +84,12 @@ module.exports = (grunt) ->
 	#///////////////////////////////////////////////////////////////
 	#///////////////////////////////////////////////////////////////
 	#///////////////////////////////////////////////////////////////
-	
+
 	# Modify css file injection paths to use
 	cssFilesToInject = cssFilesToInject.map((path) ->
 		".tmp/public/" + path
 	)
-	
+
 	# Modify js file injection paths to use
 	jsFilesToInject = jsFilesToInject.map((path) ->
 		".tmp/public/" + path
@@ -97,7 +97,7 @@ module.exports = (grunt) ->
 	templateFilesToInject = templateFilesToInject.map((path) ->
 		"assets/" + path
 	)
-	
+
 	# Get path to core grunt dependencies from Sails
 	path = require("path")
 	depsPath = "node_modules"
@@ -112,7 +112,7 @@ module.exports = (grunt) ->
 	grunt.loadTasks path.join(depsPath, "/grunt-contrib-less/tasks")
 	grunt.loadTasks path.join(depsPath, "/grunt-contrib-coffee/tasks")
 	grunt.loadTasks path.join(depsPath, "/grunt-sync/tasks")
-	
+
 	# Project configuration.
 	grunt.initConfig
 		pkg: grunt.file.readJSON("package.json")
@@ -147,7 +147,7 @@ module.exports = (grunt) ->
 
 		jst:
 			dev:
-				
+
 				# To use other sorts of templates, specify the regexp below:
 				# options: {
 				#   templateSettings: {
@@ -200,7 +200,7 @@ module.exports = (grunt) ->
 					}
 				]
 
-		
+
 		###*
 		Production JS and CSS minification
 		###
@@ -223,7 +223,7 @@ module.exports = (grunt) ->
 				src: [".tmp/public/concat/production.css"]
 				dest: ".tmp/public/min/production.css"
 
-		
+
 		###*
 		Automatically injects <link> and <script> tags
 		###
@@ -259,7 +259,7 @@ module.exports = (grunt) ->
 					fileTmpl: "<link rel=\"stylesheet\" href=\"%s\">"
 					appRoot: ".tmp/public"
 
-				
+
 				# cssFilesToInject defined up top
 				files:
 					".tmp/public/**/*.html": cssFilesToInject
@@ -278,7 +278,7 @@ module.exports = (grunt) ->
 					"views/**/*.html": [".tmp/public/min/production.css"]
 					"views/**/*.ejs": [".tmp/public/min/production.css"]
 
-			
+
 			# Bring in JST template object
 			devTpl:
 				options:
@@ -294,22 +294,22 @@ module.exports = (grunt) ->
 
 		watch:
 			api:
-				
+
 				# API files to watch:
 				files: ["api/**/*"]
 
 			assets:
-				
+
 				# Assets to watch:
 				files: ["assets/**/*"]
-				
+
 				# When assets are changed:
 				tasks: [
 					"syncAssets"
 					"linkAssets"
 				]
 
-	
+
 	# When Sails is lifted:
 	grunt.registerTask "default", [
 		"compileAssets"
@@ -330,13 +330,13 @@ module.exports = (grunt) ->
 		"coffee:dev"
 	]
 	grunt.registerTask "linkAssets", [
-		
+
 		# Update link/script/template references in `assets` index.html
 		"sails-linker:devJs"
 		"sails-linker:devStyles"
 		"sails-linker:devTpl"
 	]
-	
+
 	# Build the assets into a web accessible folder.
 	# (handy for phone gap apps, chrome extensions, etc.)
 	grunt.registerTask "build", [
@@ -345,7 +345,7 @@ module.exports = (grunt) ->
 		"clean:build"
 		"copy:build"
 	]
-	
+
 	# When sails is lifted in production
 	grunt.registerTask "prod", [
 		"clean:dev"
